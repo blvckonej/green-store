@@ -1,119 +1,67 @@
+import React from "react";
+import axios from "axios";
 
-
+import Card from "./components/CardContent/Card";
+import Header from "./components/HeaderContent/Header";
+import CartSlider from "./components/CartSlider/CartSlider";
 
 
 
 function App() {
+  const [openCart, setOpenCart] = React.useState(false)
+  const [products, setProducts] = React.useState([]);
+  const [cartProducts, setCartProducts] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState([]);
+
+  React.useEffect(() => {
+      axios.get('https://62e194f4e8ad6b66d84c8b13.mockapi.io/products')
+        .then(res => {
+          setProducts(res.data)
+        });
+        axios.get('https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart')
+        .then(res => {
+          setCartProducts(res.data)
+        });
+  }, [])
+
+  const onAddCart = (obj) => {
+    axios.post('https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart', obj)
+        .then(res => {
+          setProducts(res.data)
+        })
+    setCartProducts([...cartProducts, obj])
+  }
+
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  }
   return (
     <div className="wrapper">
-      <header className="header">
-        <div className="header__left">
-          <img src="/img/icon/logoNotext.svg" alt="Logo" width={50} height={50}/>
-          <div className="header__info">
-            <h3>Organic Store</h3>
-            <p>Магазин твоей мечты</p>
-          </div>
-        </div>
-        <ul className="header__right">
-          <li>
-            <img width={25} height={25} src="/img/icon/cart.svg"/>
-            <span>1200 rub</span>
-          </li>
-          <li>
-            <img width={25} height={25} src="/img/icon/user.svg"/>
-          </li>
-        </ul>
-      </header>
-
+      {openCart ? <CartSlider products={cartProducts} onCloseCart={() => setOpenCart(false)}/> : null}
+      <Header
+        onClickCart={() => setOpenCart(!openCart)}/>
       <div className="content">
-        <h1 className="content__title">Весь товар</h1>
-
+        <div className="content__search-block">
+        <h1 className="content__title">{searchValue ? `Поиск: "${searchValue}"` : "Продукты"}</h1>
+          <div className="content__search-panel">
+          <img src="/img/icon/search.svg" alt="search" />
+          {searchValue && <img className="content__clear-search" src="img/icon/close.svg" alt="clear btn" />}
+          <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск" />
+          </div>
+        </div>
         <div className="content__store">
-        <div className="content__card">
-          <img src="/img/store-img/almonds.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
-        </div>
 
-        <div className="content__card">
-          <img src="/img/store-img/capusta.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
+          {products.filter((item) => item.name.toLowerCase().includes(searchValue))
+            .map((item, index) => (
+              <Card
+                key={index}
+                title={item.name}
+                price={item.price}
+                imgUrl={item.imgUrl}
+                onClickLike={() => console.log('liked nahui')}
+                onAddCart={(obj) => onAddCart(obj)}/>
+            ))}
         </div>
-
-        <div className="content__card">
-          <img src="/img/store-img/cofee.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
-        </div>
-
-        <div className="content__card">
-          <img src="/img/store-img/pistachio.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
-        </div>
-
-        <div className="content__card">
-          <img src="/img/store-img/tomat.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
-        </div>
-
-        <div className="content__card">
-          <img src="/img/store-img/corn.png" alt="Corn image" width={287} height={278}/>
-          <p>Fresh Corn</p>
-          <div className="content__card-bottom">
-            <div className="content__card-price">
-              <span>Цена:</span>
-              <b>11 200 rub</b>
-            </div>
-              <button className="content__card-button">
-                <img src="/img/icon/addCart.svg" alt="add Cart" width={11} height={11}/>
-              </button>
-          </div>
-        </div>
-        </div>
-
       </div>
     </div>
   );
