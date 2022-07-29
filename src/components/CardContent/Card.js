@@ -22,7 +22,7 @@ function Card({ title, imgUrl, price, onClickLike, onAddCart, onAddFavorite }) {
         <div className="content__card-favorite">
         <img className="content__card-img" src={favoriteCart ? "/img/icon/activeLike.svg" : "/img/icon/Like.svg"} alt="like btn" onClick={clickFavorite} />
         </div>
-        <img src={imgUrl} alt="Corn image" />
+        <img src={imgUrl} alt="Corn image" width={325} height={227}/>
         <p>{title}</p>
         <div className="content__card-bottom">
           <div className="content__card-price">

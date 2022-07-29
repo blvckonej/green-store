@@ -26,13 +26,14 @@ function App() {
   }, []);
 
   const onAddCart = (obj) => {
-    if (cartProducts.find((item) => item.id === obj.id)) {
-      axios.delete(`https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart/${obj.id}`)
-      setCartProducts((prev) => prev.filter(item => item.id !== obj.id))
-    } else {
-      axios.post('https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart', obj)
-      setCartProducts((prev) => [...prev, obj])
-    }
+    axios.post('https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart', obj)
+    setCartProducts((prev) => [...prev, obj])
+    // if (cartProducts.find((item) => item.id === obj.id)) {
+    //   axios.delete(`https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart/${obj.id}`)
+    //   setCartProducts((prev) => prev.filter(item => item.id !== obj.id))
+    // } else {
+
+    // }
   }
 
   const onAddFavorite = (obj) => {
