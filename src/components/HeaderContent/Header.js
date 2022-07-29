@@ -4,10 +4,10 @@ function Header(props) {
     return (
         <header className="header">
             <div className="header__left">
-            <img src="/img/icon/logoNotext.svg" alt="Logo" width={50} height={50}/>
+            <img src="/img/icon/logo.svg" alt="Logo" width={50} height={50}/>
             <div className="header__info">
-                <h3>Organic Store</h3>
-                <p>Магазин твоей мечты</p>
+                <h3>Food Store</h3>
+                <p>Давай, похаваем</p>
             </div>
             </div>
             <ul className="header__right">
@@ -17,6 +17,9 @@ function Header(props) {
             </li>
             <li>
                 <img width={25} height={25} src="/img/icon/user.svg"/>
+            </li>
+            <li>
+                <img width={25} height={25} src="/img/icon/like.svg"/> 
             </li>
             </ul>
       </header>

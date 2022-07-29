@@ -28,7 +28,7 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FFC833;
+  background: #303030;
 }
 
 code {
@@ -37,7 +37,7 @@ code {
 }
 
 .wrapper {
-  background-color: #6C00FF;
+  background-color: #272727;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
   max-width: 1440px;
@@ -58,14 +58,14 @@ code {
   &__store {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
   &__search-block {
     display: flex;
     justify-content: space-between;
   }
   &__search-panel {
-      border: 1px solid #272727;
+      border: 1px solid #01B575;
       border-radius: 10px;
       height: 45px;
       width: 250px;
@@ -73,10 +73,11 @@ code {
       align-items: center;
       padding: 10px;
       input {
-        background-color: #6C00FF;
+        background-color: #272727;
         border: 0;
         margin-left: 5px;
         font-size: 16px;
+        color: #ffffff;
         &::placeholder {
           color: #ffffff;
         }

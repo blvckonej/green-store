@@ -2,27 +2,34 @@ import React from 'react';
 
 import '../CardContent/Card.scss'
 
-function Card({ title, imgUrl, price, onClickLike, onAddCart }) {
+function Card({ title, imgUrl, price, onClickLike, onAddCart, onAddFavorite }) {
   const [addedCart, setAddedCart] = React.useState(false);
+  const [favoriteCart, setFavoriteCart] = React.useState(false);
+
 
   const clickAdded = () => {
     onAddCart({title, imgUrl, price});
     setAddedCart(!addedCart);
   }
 
+  const clickFavorite = () => {
+    onAddFavorite({title, imgUrl, price});
+    setFavoriteCart(!favoriteCart)
+  }
+
     return(
         <div className="content__card">
         <div className="content__card-favorite">
-        <img src="/img/icon/activeLike.svg" alt="Active like" onClick={onClickLike} />
+        <img className="content__card-img" src={favoriteCart ? "/img/icon/activeLike.svg" : "/img/icon/Like.svg"} alt="like btn" onClick={clickFavorite} />
         </div>
-        <img src={imgUrl} alt="Corn image" width={287} height={278}/>
+        <img src={imgUrl} alt="Corn image" />
         <p>{title}</p>
         <div className="content__card-bottom">
           <div className="content__card-price">
             <span>Цена:</span>
             <b>{price}</b>
           </div>
-          <img onClick={clickAdded} src={addedCart ? "/img/icon/addedCart.svg" : "/img/icon/addCart.svg"} alt="add Cart"/>
+          <button onClick={clickAdded} className="content__card-btn">{addedCart ? 'Добавлено' : 'В корзину'}</button>
         </div>
       </div>
     )

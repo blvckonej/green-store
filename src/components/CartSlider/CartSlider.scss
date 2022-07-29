@@ -5,6 +5,7 @@
     top: 0;
     width: 100%;
     height: 100%;
+    backdrop-filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
     &-block {
@@ -14,7 +15,8 @@
       width: 385px;
       height: 100%;
       right: 0;
-      background: #ffffff;
+      color: #ffffff;
+      background: #272727;
       box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
       padding: 30px;
       h2 {
@@ -28,6 +30,36 @@
         }
       }
     }
+    &-empty {
+      color:#ffffff;
+      font-size: 35px;
+    }
+    &-empty_block {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    &-empty_btn {
+      margin-top: 15px;
+      width: 100%;
+      height: 55px;
+      background: #01B575;
+      border-radius: 18px;
+      border: 0;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.1s ease-in-out;
+      &:hover {
+        background: lighten($color: #01B575, $amount: 5%)
+      }
+      &:active {
+        background: darken($color: #01B575, $amount: 5%)
+      }
+    }
     &-wrapp {
       flex: 1;
     }
@@ -37,7 +69,7 @@
       justify-content: space-between;
       margin-top: 20px;
       border: 1px solid #f3f3f3;
-      border-radius: 20px;
+      border-radius: 10px;
       overflow: auto;
       p {
         font-size: 16px;
@@ -47,6 +79,7 @@
       }
       img {
         margin-right: 15px;
+        object-fit: contain;
       }
       .descr {
         display: flex;
@@ -84,7 +117,7 @@
     button {
       width: 100%;
       height: 55px;
-      background: #9dd558;
+      background: #01B575;
       border-radius: 18px;
       border: 0;
       color: #ffffff;
@@ -93,10 +126,10 @@
       cursor: pointer;
       transition: background 0.1s ease-in-out;
       &:hover {
-        background: lighten($color: #9dd558, $amount: 5%)
+        background: lighten($color: #01B575, $amount: 5%)
       }
       &:active {
-        background: darken($color: #9dd558, $amount: 5%)
+        background: darken($color: #01B575, $amount: 5%)
       }
     }
   }
