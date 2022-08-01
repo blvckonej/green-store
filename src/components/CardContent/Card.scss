@@ -40,7 +40,8 @@
       flex-direction: column;
     }
     &-favorite {
-      display: none;
+      margin-left: 10px;
+      margin-top: 10px;
       position: absolute;
       cursor: pointer;
     }

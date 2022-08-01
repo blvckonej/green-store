@@ -1,11 +1,12 @@
 import Card from "../components/CardContent/Card";
 
-function Home(products, 
+function Home({products,
+    cartProducts, 
     searchValue,
     setSearchValue, 
     onChangeSearchInput, 
     onAddFavorite, 
-    onAddCart) {
+    onAddCart}) {
       
     return(
         <div className="content">
@@ -23,9 +24,11 @@ function Home(products,
             .map((item, index) => (
               <Card
                 key={index}
+                id={item.id}
                 title={item.name}
                 price={item.price}
                 imgUrl={item.imgUrl}
+                added={cartProducts.some(obj => obj.id == item.id)}
                 onClickLike={(obj) => onAddFavorite(obj)}
                 onAddCart={(obj) => onAddCart(obj)}
                 />
