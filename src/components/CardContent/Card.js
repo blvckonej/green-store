@@ -18,7 +18,7 @@ function Card({ title, imgUrl, price, onClickLike, onAddCart, onAddFavorite }) {
   }
 
     return(
-        <div className="content__card">
+      <div className="content__card">
         <div className="content__card-favorite">
         <img className="content__card-img" src={favoriteCart ? "/img/icon/activeLike.svg" : "/img/icon/Like.svg"} alt="like btn" onClick={clickFavorite} />
         </div>
