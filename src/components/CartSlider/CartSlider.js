@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../../context';
 import '../CartSlider/CartSlider.scss'
 
 function CartSlider({ onCloseCart, onRemove, products = []}) {

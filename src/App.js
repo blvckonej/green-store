@@ -67,12 +67,11 @@ function App() {
     axios.delete(`https://62e194f4e8ad6b66d84c8b13.mockapi.io/cart/${id}`)
     setCartProducts((prev) => prev.filter((item) => item.id !== id));
   }
-
   return (
+    
     <div className="wrapper">
       {openCart ? <CartSlider products={cartProducts} onCloseCart={() => setOpenCart(false)} onRemove={onRemoveItem}/> : null}
       <Header onClickCart={() => setOpenCart(!openCart)}/>
-
           <Routes>
             <Route exact path="/" element={
               <Home
